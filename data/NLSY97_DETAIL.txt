@@ -1,0 +1,619 @@
+Variables used:
+
+	income = YINC_1700,
+    gender = KEY_SEX - 1,
+    black = ifelse(KEY_RACE_ETHNICITY == 1, 1, 0),
+    hispan = ifelse(KEY_RACE_ETHNICITY == 2, 1, 0),
+    exper = CVC_WKSWK_ADULT2_ALL * 7 / 365,
+    abil = ASVAB_MATH_VERBAL_SCORE_PCT,
+    # abil_sat_c = CVC_SAT_VERBAL_SCORE_2007 + CVC_SAT_MATH_SCORE_2007,
+    # abil_act = CVC_ACT_SCORE_2007,
+    feduc = CV_HGC_RES_DAD,
+    meduc = CV_HGC_RES_MOM,
+    married = ifelse(CV_MARSTAT_COLLAPSED == 1, 1, ifelse(CV_MARSTAT_COLLAPSED == 0, 0, -1)),
+    child = CV_BIO_CHILD_HH,
+    educ = CVC_HGC_EVER,
+    degree = ifelse(CVC_HIGHEST_DEGREE_EVER > 3, 1, ifelse(CVC_HIGHEST_DEGREE_EVER %in% c(0, 1, 2, 3), 0, -1))
+
+
+___________________________________________________________________________________________________
+
+
+R00001.00    [PUBID]                                        Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             PUBID, YOUTH CASE IDENTIFICATION CODE
+ 
+COMMENT: YOUTH CASE IDENTIFICATION CODE
+ 
+       0           0
+     998           1 TO 999
+     999        1000 TO 1999
+     997        2000 TO 2999
+     996        3000 TO 3999
+     998        4000 TO 4999
+     996        5000 TO 5999
+     994        6000 TO 6999
+     994        7000 TO 7999
+     989        8000 TO 8999
+      23        9000 TO 9999
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:           9022        Mean:              4504.3
+ 
+Hard Minimum: [0]  Hard Maximum: [99999999]
+ 
+Lead In: R72976.00[Default]
+Default Next Question: R05363.00
+
+
+
+
+R05363.00    [KEY_SEX]                                      Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             KEY!SEX, RS GENDER (SYMBOL)
+ 
+COMMENT: Gender of Youth
+ 
+    4599       1 Male
+    4385       2 Female
+       0       0 No Information
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Lead In: R00001.00[Default]
+Default Next Question: R05364.00
+
+
+
+R13026.00    [CV_HGC_RES_DAD]                               Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             RESIDENTIAL FATHERS HIGHEST GRADE COMPLETED
+ 
+Highest grade completed by respondent's residential father (includes both 
+biological and non-biological fathers).
+ 
+       0       0 NONE
+       1       1 1ST GRADE
+      12       2 2ND GRADE
+      51       3 3RD GRADE
+      56       4 4TH GRADE
+      51       5 5TH GRADE
+     150       6 6TH GRADE
+      69       7 7TH GRADE
+     117       8 8TH GRADE
+     186       9 9TH GRADE
+     195      10 10TH GRADE
+     277      11 11TH GRADE
+    1917      12 12TH GRADE
+     345      13 1ST YEAR COLLEGE
+     720      14 2ND YEAR COLLEGE
+     164      15 3RD YEAR COLLEGE
+     780      16 4TH YEAR COLLEGE
+     119      17 5TH YEAR COLLEGE
+     255      18 6TH YEAR COLLEGE
+      86      19 7TH YEAR COLLEGE
+     153      20 8TH YEAR COLLEGE OR MORE
+       3      95 UNGRADED
+  -------
+    5707
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     367
+TOTAL =========>    6074   VALID SKIP(-4)    2910     NON-INTERVIEW(-5)       0
+ 
+Lead In: R13025.00[Default]
+Default Next Question: R13027.00
+
+
+
+
+
+R13027.00    [CV_HGC_RES_MOM]                               Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             RESIDENTIAL MOTHERS HIGHEST GRADE COMPLETED
+ 
+Highest grade completed by respondent's residential mother (includes both 
+biological and non-biological mothers).
+ 
+       0       0 NONE
+       3       1 1ST GRADE
+      28       2 2ND GRADE
+      51       3 3RD GRADE
+      54       4 4TH GRADE
+      54       5 5TH GRADE
+     221       6 6TH GRADE
+      67       7 7TH GRADE
+     183       8 8TH GRADE
+     260       9 9TH GRADE
+     373      10 10TH GRADE
+     517      11 11TH GRADE
+    2870      12 12TH GRADE
+     639      13 1ST YEAR COLLEGE
+     996      14 2ND YEAR COLLEGE
+     251      15 3RD YEAR COLLEGE
+     902      16 4TH YEAR COLLEGE
+     163      17 5TH YEAR COLLEGE
+     246      18 6TH YEAR COLLEGE
+      38      19 7TH YEAR COLLEGE
+      89      20 8TH YEAR COLLEGE OR MORE
+       5      95 UNGRADED
+  -------
+    8010
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     316
+TOTAL =========>    8326   VALID SKIP(-4)     658     NON-INTERVIEW(-5)       0
+ 
+Lead In: R13026.00[Default]
+Default Next Question: R12045.00
+
+
+
+R14826.00    [KEY!RACE_ETHNICITY]                           Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             KEY!RACE_ETHNICITY, COMBINED RACE AND ETHNICITY (SYMBOL)
+ 
+COMMENT: Combined race - ethnicity variable
+ 
+    2335       1 Black
+    1901       2 Hispanic
+      83       3 Mixed Race (Non-Hispanic)
+    4665       4 Non-Black / Non-Hispanic
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Lead In: R05387.00[Default]
+Default Next Question: R05389.00
+
+
+
+R98296.00    [ASVAB_MATH_VERBAL_SCORE_PCT]                  Survey Year: 1999
+  PRIMARY VARIABLE
+
+             ASVAB MATH_VERBAL SCORE PERCENT
+
+To calculate the ASVAB_MATH_VERBAL_SCORE_PCT, NLS Program staff first grouped 
+respondents into three-month age groups.  That is, the oldest cohort included 
+those born from January through March of 1980, while the youngest were born from
+October through December 1984 (a total of 20 cohorts, with an average of about 
+350 respondents per cohort).  Custom sampling weights (computed for the sample 
+of 7,093 respondents who have scores on all four exams) were assigned for each 
+respondent's scores.  Within each three-month age group and using the sampling 
+weights, we assigned percentiles for the theta scores for the tests on 
+Mathematical Knowledge (MK), Arithmetic Reasoning (AR), Word Knowledge (WK), and
+Paragraph Comprehension (PC) based on the weighted number of respondents scoring
+below each score.  We added the percentile scores for WK and PC to get an 
+aggregate Verbal score (V) for which an aggregated intra-group, internally 
+normed, percentile was then computed.  NLS Program staff then added the 
+percentile scores for MK, AR and two times the aggregated percentile for V.  
+Finally, within each group we computed a percentile score, using the weights, on
+this aggregate score, yielding a final value between zero and 99.
+
+COMMENT: USERS SHOULD NOTE THAT, ALTHOUGH THE FORMULA IS SIMILAR TO THE AFQT 
+SCORE GENERATED BY THE DEPARTMENT OF DEFENSE FOR THE NLSY79 COHORT, THIS 
+VARIABLE REFLECTS WORK DONE BY NLS PROGRAM STAFF AND IS NEITHER GENERATED NOR 
+ENDORSED BY DOD.  FOR MORE DETAILS, USERS SHOULD READ THE NLSY97 USER'S GUIDE 
+SECTION ON THE ADMINISTRATION OF THE CAT-ASVAB, ASVAB_MATH_VERBAL SCORE_PCT.
+Please see appendix 10 in the codebook supplement for more information on the 
+ASVAB.
+NOTE:  3 IMPLIED DECIMAL PLACES
+
+      20           0
+      85           1 TO 999: .001-.999
+    1728        1000 TO 19999: 1.000-19.999
+    1509       20000 TO 39999: 20.000-39.999
+    1332       40000 TO 59999: 40.000-59.999
+    1247       60000 TO 79999: 60.000-79.999
+    1172       80000 TO 100000: 80.000-100.000
+  -------
+    7093
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    7093   VALID SKIP(-4)    1891     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         100000        Mean:            45317.19
+ 
+Hard Minimum: [0]
+Hard Maximum: [100000]
+ 
+Lead In: R97127.00[Default]
+Default Next Question: R97128.00
+
+
+
+U18524.00    [CV_MARSTAT_COLLAPSED]                         Survey Year: 2017
+  PRIMARY VARIABLE
+
+             RS COLLAPSED MARITAL STATUS
+
+Collapsed marital status as of the survey date.
+
+    2766       0 Never-married
+    3066       1 Married
+     154       2 Separated
+     663       3 Divorced
+      23       4 Widowed
+  -------
+    6672
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      62
+TOTAL =========>    6734   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    2250
+ 
+Min:              0        Max:              4        Mean:                 .82
+ 
+Lead In: U18523.00[Default]
+Default Next Question: U18525.00
+
+
+
+U18526.00    [CV_BIO_CHILD_HH]                              Survey Year: 2017
+  PRIMARY VARIABLE
+
+             # BIO CHILDREN R HAS IN HOUSEHOLD
+
+Number of biological children born and residing in the household as of the 
+survey date.
+Note: Rs without any biological children are assigned a valid skip (-4).
+
+     672           0
+    1272           1
+    1542           2
+     853           3
+     320           4
+      92           5
+      31           6
+       6           7
+       2           8
+       1           9
+       0          10 TO 999: 10+
+  -------
+    4791
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      21
+TOTAL =========>    4812   VALID SKIP(-4)    1922     NON-INTERVIEW(-5)    2250
+ 
+Min:              0        Max:              9        Mean:                1.86
+ 
+Hard Minimum: [0]
+Hard Maximum: [10]
+
+
+
+U28572.00    [YINC-1700]                                    Survey Year: 2017
+  PRIMARY VARIABLE
+
+             TOTAL INCOME FROM WAGES AND SALARY IN PAST YEAR
+
+During 2016, how much income did you receive from wages, salary, commissions, or
+tips from all jobs, before deductions for taxes or for anything else?
+
+UNIVERSE: R received income from job
+
+Truncated values are applied to the top 2 percent of respondents with valid 
+non-missing responses.  The lowest value for the top 2 percent of cases is used 
+as the truncation level ($ 149,000 for this variable).  Values for all cases at 
+or over that level are averaged. That average is then assigned to each of the 
+top 2 percent of the cases.
+
+      31           0
+      35           1 TO 999
+      34        1000 TO 1999
+      25        2000 TO 2999
+      36        3000 TO 3999
+      29        4000 TO 4999
+      65        5000 TO 5999
+      21        6000 TO 6999
+      22        7000 TO 7999
+      36        8000 TO 8999
+      30        9000 TO 9999
+     239       10000 TO 14999
+     256       15000 TO 19999
+     329       20000 TO 24999
+    1920       25000 TO 49999
+    1983       50000 TO 99999999: 50000+
+  -------
+    5091
+ 
+Refusal(-1)           68   (Go To U28573.00)
+Don't Know(-2)       362   (Go To U28573.00)
+Invalid Skip(-3)       2
+TOTAL =========>    5523   VALID SKIP(-4)    1211     NON-INTERVIEW(-5)    2250
+ 
+Min:              0        Max:         235884        Mean:            49477.02
+ 
+Hard Minimum: [0]
+Hard Maximum: [5000000]
+Soft Minimum: [0]
+Soft Maximum: [200000]
+ 
+Lead In: U28570.00[Default] U28571.00[Default]
+Default Next Question: U28574.00
+
+
+
+Z90337.00    [CVC_SAT_MATH_SCORE_2007]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+             HIGHEST SAT MATH SCORE 2007
+
+CUMULATIVE VARIABLE: Highest SAT MATH score. This variable is created for all 
+respondents regardless of interview status in the latest round the variable was 
+created (round 11); CVC_SAT_MATH_RND_2007 provides the latest round from which 
+the respondent's highest score is determined.that information was used to create
+this variable.
+
+      97       1 200 - 300
+     229       2 301 - 400
+     666       3 401 - 500
+     806       4 501 - 600
+     464       5 601 - 700
+     204       6 701 - 800
+       0       0 Have not yet received the scores
+  -------
+    2466
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     954
+TOTAL =========>    3420   VALID SKIP(-4)    5564     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              6        Mean:                3.78
+ 
+Lead In: Z90323.00[Default]
+Default Next Question: Z90338.00
+
+
+
+
+Z90339.00    [CVC_SAT_VERBAL_SCORE_2007]                    Survey Year: XRND
+  PRIMARY VARIABLE
+
+             HIGHEST SAT VERBAL SCORE 2007
+
+CUMULATIVE VARIABLE: Highest SAT VERBAL score. This variable is created for all 
+respondents regardless of interview status in the latest round the variable was 
+created (round 11); CVC_SAT_VERBAL_RND_2007 provides the latest round from which
+the respondent's highest score is determined.that information was used to create
+this variable.
+
+      69       1 200 - 300
+     226       2 301 - 400
+     660       3 401 - 500
+     832       4 501 - 600
+     483       5 601 - 700
+     158       6 701 - 800
+       0       0 Have not yet received the scores
+  -------
+    2428
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     992
+TOTAL =========>    3420   VALID SKIP(-4)    5564     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              6        Mean:                3.79
+ 
+Lead In: Z90338.00[Default]
+Default Next Question: Z90340.00
+
+
+
+
+Z90341.00    [CVC_ACT_SCORE_2007]                           Survey Year: XRND
+  PRIMARY VARIABLE
+
+             HIGHEST ACT SCORE 2007
+
+CUMULATIVE VARIABLE: Highest ACT score. This variable is created for all 
+respondents regardless of interview status in the latest round the variable was 
+created (round 11); CVC_ACT_SCORE_2007 provides the latest round that 
+information was used to create this variable.
+
+       4       1 0 - 6
+      23       2 7 - 12
+     458       3 13 - 18
+     944       4 19 - 24
+     474       5 25 - 30
+     102       6 31 - 36
+       0       0 Have not yet received the scores
+  -------
+    2005
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     420
+TOTAL =========>    2425   VALID SKIP(-4)    6559     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              6        Mean:                4.08
+ 
+Lead In: Z90340.00[Default]
+Default Next Question: Z90342.00
+
+
+
+Z90654.01    [CVC_WKSWK_ADULT2_ALL]                         Survey Year: XRND
+  PRIMARY VARIABLE
+
+             # WEEKS ALL JOBS FROM AGE 20
+
+Cumulative weeks worked at all civilian jobs since age 20 as of the interview 
+date. This variable is created for all respondents regardless of interview 
+status in the current round; CVC_RND provides the actual round of the 
+respondent's most recent interview.
+Note: This variable measures the number of weeks worked from the month after the
+R's 20th birthday to the current interview date.
+
+     682           0 TO 50: weeks
+     209          51 TO 100: weeks
+     213         101 TO 150: weeks
+     209         151 TO 200: weeks
+     213         201 TO 250: weeks
+     264         251 TO 300: weeks
+     321         301 TO 350: weeks
+     348         351 TO 400: weeks
+     369         401 TO 450: weeks
+     370         451 TO 500: weeks
+     438         501 TO 550: weeks
+     519         551 TO 600: weeks
+     646         601 TO 650: weeks
+     852         651 TO 700: weeks
+     837         701 TO 750: weeks
+     670         751 TO 800: weeks
+     532         801 TO 850: weeks
+     360         851 TO 900: weeks
+     166         901 TO 950: weeks
+       6         951 TO 1000: weeks
+       0        1001 TO 1050: weeks
+       0        1051 TO 1100: weeks
+       0        1101 TO 1150: weeks
+       0        1151 TO 1200: weeks
+       0        1201 TO 1250: weeks
+       0        1251 TO 1300: weeks
+  -------
+    8224
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     760
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:            959        Mean:              525.56
+ 
+Hard Minimum: [0]
+Hard Maximum: [260]
+ 
+Lead In: Z90653.01[Default]
+Default Next Question: Z90658.00
+
+
+
+
+Z90839.00    [CVC_HIGHEST_DEGREE_EVER]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+             HIGHEST DEGREE RECEIVED
+
+CUMULATIVE VARIABLE: The highest degree received. This variable is created for 
+all respondents regardless of interview status in the current round; CVC_RND 
+provides the actual round of the respondent's most recent interview.
+
+     953       0 None
+    1146       1 GED
+    3667       2 High school diploma (Regular 12 year program)
+     737       3 Associate/Junior college (AA)
+    1673       4 Bachelor's degree (BA, BS)
+     603       5 Master's degree (MA, MS)
+      54       6 PhD
+     120       7 Professional degree (DDS, JD, MD)
+  -------
+    8953
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      31
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:              7        Mean:                2.41
+ 
+Lead In: Z90838.00[Default]
+Default Next Question: Z90840.00
+
+
+
+
+Z90838.00    [CVC_HGC_EVER]                                 Survey Year: XRND
+  PRIMARY VARIABLE
+
+             RS HIGHEST GRADE COMPLETED
+
+CUMULATIVE VARIABLE: The highest grade completed. This variable is created for 
+all respondents regardless of interview status in the current round; CVC_RND 
+provides the actual round of the respondent's most recent interview.
+
+       1       0 None
+       0       1 1st grade
+       1       2 2nd grade
+       0       3 3rd grade
+       0       4 4th grade
+       5       5 5th grade
+      31       6 6th grade
+      60       7 7th grade
+     297       8 8th grade
+     447       9 9th grade
+     509      10 10th grade
+     552      11 11th grade
+    1901      12 12th grade
+     722      13 1st year college
+     991      14 2nd year college
+     525      15 3rd year college
+    1286      16 4th year college
+     465      17 5th year college
+     474      18 6th year college
+     238      19 7th year college
+     361      20 8th year college or more
+      18      95 Ungraded
+  -------
+    8884
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     100
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:             95        Mean:                13.8
+
+
+
+Print
+
+R05364.02    [KEY!BDATE_Y]                                  Survey Year: 1997
+  PRIMARY VARIABLE
+
+             KEY!BDATE, RS BIRTHDATE MONTH/YEAR (SYMBOL)
+
+COMMENT: Birthdate of Youth
+
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:           1980        Max:           1984        Mean:             1982.01
+ 
+Earliest (NonMissing): JANUARY/1980
+Latest   (NonMissing): DECEMBER/1984
+ 
+Hard Minimum: [01/01/1880]
+Hard Maximum: [the current date]
+ 
+Lead In: R05364.01[Default]
+Default Next Question: R05366.00
